@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class Ball : MonoBehaviour
 {
@@ -22,6 +24,17 @@ public class Ball : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+
+        if (collision.gameObject.CompareTag("BottomWall"))
+        {
+            Destroy(gameObject);
+        }
+
+        if (collision.gameObject.CompareTag("Brick"))
+        {
+            Destroy(collision.gameObject);
+        }
+
         _direction = Vector3.Reflect(_direction, collision.contacts[0].normal);
     }
 }

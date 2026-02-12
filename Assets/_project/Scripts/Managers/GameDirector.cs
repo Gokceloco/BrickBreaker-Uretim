@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameDirector : MonoBehaviour
 {
@@ -9,6 +10,14 @@ public class GameDirector : MonoBehaviour
     private void Start()
     {
         RestartLevel();
+    }
+
+    private void Update()
+    {
+        if (Keyboard.current.rKey.wasPressedThisFrame)
+        {
+            RestartLevel();
+        }
     }
 
     private void RestartLevel()
