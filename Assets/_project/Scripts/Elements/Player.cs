@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float yPos;
 
     private void Update()
-    {
+    {        
         if (Keyboard.current.dKey.isPressed)
         {
             transform.position += Vector3.right * Time.deltaTime * speed;

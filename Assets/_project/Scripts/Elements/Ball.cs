@@ -6,6 +6,11 @@ public class Ball : MonoBehaviour
 {
     [SerializeField] private float speed;
 
+    [Header("Bounce Properties")]
+    [SerializeField] private bool isBounceRelative;
+    [SerializeField] private float playerBounceXMultiplier;
+    [SerializeField] private float absoluteBounceBoundry;
+
     private bool _isMoving;
     private Vector3 _direction;
     public void StartBall()
@@ -32,7 +37,28 @@ public class Ball : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Brick"))
         {
-            Destroy(collision.gameObject);
+            collision.gameObject.GetComponent<Brick>().GetHit(1);
+        }
+
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            var distance = (transform.position - collision.transform.position).x;
+
+            if (isBounceRelative)
+            {
+                _direction.x += distance * playerBounceXMultiplier;
+            }
+            else
+            {
+                if (distance < -absoluteBounceBoundry)
+                {
+                    _direction.x = -1;
+                }
+                else if (distance > absoluteBounceBoundry)
+                {
+                    _direction.x = 1;
+                }
+            }
         }
 
         _direction = Vector3.Reflect(_direction, collision.contacts[0].normal);
