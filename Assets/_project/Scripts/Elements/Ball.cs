@@ -7,14 +7,16 @@ public class Ball : MonoBehaviour
     [SerializeField] private float speed;
 
     [Header("Bounce Properties")]
-    [SerializeField] private bool isBounceRelative;
+    [SerializeField] private BallBounceType bounceType;
     [SerializeField] private float playerBounceXMultiplier;
     [SerializeField] private float absoluteBounceBoundry;
 
     private bool _isMoving;
     private Vector3 _direction;
+    private Rigidbody2D _rb;
     public void StartBall()
     {
+        _rb = GetComponent<Rigidbody2D>();
         _direction = new Vector3(Random.Range(-1f,1f), 1, 0);
         _isMoving = true;
     }
@@ -23,7 +25,7 @@ public class Ball : MonoBehaviour
     {
         if (_isMoving)
         {
-            transform.position += _direction.normalized * Time.deltaTime * speed;
+            _rb.linearVelocity = _direction.normalized * speed;
         }
     }
 
@@ -44,11 +46,11 @@ public class Ball : MonoBehaviour
         {
             var distance = (transform.position - collision.transform.position).x;
 
-            if (isBounceRelative)
+            if (bounceType == BallBounceType.Relative)
             {
                 _direction.x += distance * playerBounceXMultiplier;
             }
-            else
+            else if (bounceType == BallBounceType.Absolute)
             {
                 if (distance < -absoluteBounceBoundry)
                 {
@@ -58,9 +60,15 @@ public class Ball : MonoBehaviour
                 {
                     _direction.x = 1;
                 }
-            }
+            }            
         }
 
         _direction = Vector3.Reflect(_direction, collision.contacts[0].normal);
     }
+}
+
+public enum BallBounceType
+{
+    Relative,
+    Absolute,
 }

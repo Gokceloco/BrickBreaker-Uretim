@@ -1258,8 +1258,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2053521620}
-  - component: {fileID: 2053521621}
   - component: {fileID: 2053521622}
+  - component: {fileID: 2053521621}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1296,9 +1296,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b803544999f2be42b50ffdbb7451df4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
+  inputType: 1
   speed: 5
   maxXPos: 2
   yPos: -4
+  sensitivity: 0.008
 --- !u!61 &2053521622
 BoxCollider2D:
   m_ObjectHideFlags: 0
