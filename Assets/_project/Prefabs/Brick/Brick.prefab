@@ -274,9 +274,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98bc61c8526a6f447b6cdbccf304d5f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Brick
-  healthTMP: {fileID: 3315324748740158604}
   minStartHealth: 1
   maxStartHealth: 5
+  healthTMP: {fileID: 3315324748740158604}
+  spriteTransfrom: {fileID: 5310728945574033132}
 --- !u!1 &7802592381963204765
 GameObject:
   m_ObjectHideFlags: 0
@@ -288,7 +289,7 @@ GameObject:
   - component: {fileID: 5310728945574033132}
   - component: {fileID: 339873307157314019}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Sprite
   m_TagString: Brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

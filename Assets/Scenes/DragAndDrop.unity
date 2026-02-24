@@ -130,7 +130,6 @@ GameObject:
   - component: {fileID: 84677543}
   - component: {fileID: 84677545}
   - component: {fileID: 84677544}
-  - component: {fileID: 84677546}
   m_Layer: 7
   m_Name: Slot
   m_TagString: Untagged
@@ -258,19 +257,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &84677546
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 84677542}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d67b5bcb9723abf45a84bd800c88f1cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Slot
-  isFilled: 0
 --- !u!1 &255718992
 GameObject:
   m_ObjectHideFlags: 0
@@ -360,7 +346,7 @@ GameObject:
   - component: {fileID: 299730849}
   - component: {fileID: 299730848}
   - component: {fileID: 299730847}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Card
   m_TagString: Card
   m_Icon: {fileID: 0}
@@ -708,6 +694,56 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &640176827
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 640176828}
+  - component: {fileID: 640176829}
+  m_Layer: 0
+  m_Name: DragAndDropManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &640176828
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 640176827}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.02518, y: 1.4346, z: -0.00183}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &640176829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 640176827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e28b8b588ffd87047918159df2dc4116, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DragAndDropManager
+  cardLayerMask:
+    serializedVersion: 2
+    m_Bits: 8
+  slotLayerMask:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &1746245969
 GameObject:
   m_ObjectHideFlags: 0
@@ -719,7 +755,6 @@ GameObject:
   - component: {fileID: 1746245973}
   - component: {fileID: 1746245972}
   - component: {fileID: 1746245971}
-  - component: {fileID: 1746245970}
   m_Layer: 7
   m_Name: Slot (1)
   m_TagString: Untagged
@@ -727,19 +762,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1746245970
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1746245969}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d67b5bcb9723abf45a84bd800c88f1cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Slot
-  isFilled: 0
 --- !u!61 &1746245971
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -860,75 +882,14 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &3982719818734780303
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 398969008969649679, guid: ad68364a55430cb4ea07f957778f6df1, type: 3}
-      propertyPath: mainCamera
-      value: 
-      objectReference: {fileID: 519420031}
-    - target: {fileID: 1328760500852373597, guid: ad68364a55430cb4ea07f957778f6df1, type: 3}
-      propertyPath: m_Name
-      value: DragAndDropManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 3498517034915536748, guid: ad68364a55430cb4ea07f957778f6df1, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.8043
-      objectReference: {fileID: 0}
-    - target: {fileID: 3498517034915536748, guid: ad68364a55430cb4ea07f957778f6df1, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.08338
-      objectReference: {fileID: 0}
-    - target: {fileID: 3498517034915536748, guid: ad68364a55430cb4ea07f957778f6df1, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.15737
-      objectReference: {fileID: 0}
-    - target: {fileID: 3498517034915536748, guid: ad68364a55430cb4ea07f957778f6df1, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3498517034915536748, guid: ad68364a55430cb4ea07f957778f6df1, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3498517034915536748, guid: ad68364a55430cb4ea07f957778f6df1, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3498517034915536748, guid: ad68364a55430cb4ea07f957778f6df1, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3498517034915536748, guid: ad68364a55430cb4ea07f957778f6df1, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3498517034915536748, guid: ad68364a55430cb4ea07f957778f6df1, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3498517034915536748, guid: ad68364a55430cb4ea07f957778f6df1, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: ad68364a55430cb4ea07f957778f6df1, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 640176828}
   - {fileID: 519420032}
   - {fileID: 619394802}
   - {fileID: 299730849}
-  - {fileID: 3982719818734780303}
   - {fileID: 255718994}
   - {fileID: 84677543}
   - {fileID: 1746245973}
