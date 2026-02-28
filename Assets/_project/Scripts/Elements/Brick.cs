@@ -7,10 +7,14 @@ public class Brick : MonoBehaviour
     public int minStartHealth;
     public int maxStartHealth;
 
+    private LevelManager _levelManager;
+
     private int _currentHealth;
 
     [SerializeField] TextMeshPro healthTMP;
     [SerializeField] Transform spriteTransfrom;
+
+    public SpriteRenderer brickSpriteRenderer;
 
     public void StartBrick()
     {
@@ -19,6 +23,8 @@ public class Brick : MonoBehaviour
 
         transform.localScale = Vector3.zero;
         transform.DOScale(1, .2f);
+
+        _levelManager = GetComponentInParent<LevelManager>();
     }
 
     private void DecideStartHealth()
@@ -35,7 +41,10 @@ public class Brick : MonoBehaviour
 
         if (_currentHealth <= 0)
         {
-            GetComponentInParent<LevelManager>().BrickDestroyed(this);
+            _levelManager.BrickDestroyed(this);
+            _levelManager.fXManager.PlayBrickDestroyedPS(transform.position);
+            _levelManager.fXManager.audioManager.PlayBrickDestroyedAS();
+            _levelManager.cameraShaker.ShakeCamera(.25f,1);
             Destroy(gameObject);
         }
     }

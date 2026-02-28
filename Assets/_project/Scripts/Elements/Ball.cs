@@ -31,15 +31,20 @@ public class Ball : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        var color = Color.white;
+        var pitch = .8f;
 
         if (collision.gameObject.CompareTag("BottomWall"))
         {
             Destroy(gameObject);
+            color = Color.red;
         }
 
         if (collision.gameObject.CompareTag("Brick"))
         {
+            pitch = 1;
             collision.gameObject.GetComponent<Brick>().GetHit(1);
+            color = Color.yellow;
         }
 
         if (collision.gameObject.CompareTag("Player"))
@@ -49,6 +54,18 @@ public class Ball : MonoBehaviour
             if (bounceType == BallBounceType.Relative)
             {
                 _direction.x += distance * playerBounceXMultiplier;
+                if (distance < -absoluteBounceBoundry)
+                {
+                    color = Color.white;
+                }
+                else if (distance > absoluteBounceBoundry)
+                {
+                    color = Color.white;
+                }
+                else
+                {
+                    color = new Color(0,.5f,1f);
+                }
             }
             else if (bounceType == BallBounceType.Absolute)
             {
@@ -64,6 +81,11 @@ public class Ball : MonoBehaviour
         }
 
         _direction = Vector3.Reflect(_direction, collision.contacts[0].normal);
+
+        GetComponentInParent<BallManager>().fXManager
+            .PlayImpactPS(collision.contacts[0].point, collision.contacts[0].normal, color);
+
+        GetComponentInParent<BallManager>().fXManager.audioManager.PlayImpactAS(pitch);
     }
 }
 

@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class BallManager : MonoBehaviour
 {
+    public FXManager fXManager;
+
     public Ball ballPrefab;
 
     private Ball _currentBall;
@@ -26,7 +28,7 @@ public class BallManager : MonoBehaviour
 
     private void CreateBall()
     {
-        _currentBall = Instantiate(ballPrefab);
+        _currentBall = Instantiate(ballPrefab, transform);
         _currentBall.transform.position = new Vector3(0,-2,0);
         _currentBall.StartBall();
     }
