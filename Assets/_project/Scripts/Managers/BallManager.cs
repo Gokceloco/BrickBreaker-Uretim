@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class BallManager : MonoBehaviour
 {
+    public GameDirector gameDirector;
     public FXManager fXManager;
 
     public Ball ballPrefab;
@@ -31,5 +32,23 @@ public class BallManager : MonoBehaviour
         _currentBall = Instantiate(ballPrefab, transform);
         _currentBall.transform.position = new Vector3(0,-2,0);
         _currentBall.StartBall();
+    }
+
+    public void StopBall()
+    {
+        _currentBall.StopBall();
+    }
+
+    public void BallDestroyed()
+    {
+        var remainingHealth = gameDirector.player.ReduceHealth();
+        if (remainingHealth > 0) 
+        {
+            CreateBall();
+        }
+        else
+        {
+            gameDirector.LevelFailed();
+        }
     }
 }

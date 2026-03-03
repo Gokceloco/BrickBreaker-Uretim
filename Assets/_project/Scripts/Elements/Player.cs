@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,6 +11,13 @@ public class Player : MonoBehaviour
     [SerializeField] private float sensitivity;
 
     private Transform selectedObj;
+
+    private int _remainingHealth;
+
+    public void RestartPlayer()
+    {
+        _remainingHealth = 3;
+    }
 
     private void Update()
     {
@@ -37,6 +45,12 @@ public class Player : MonoBehaviour
     {
         var xPos = Mathf.Clamp(transform.position.x, -maxXPos, maxXPos);
         transform.position = new Vector3 (xPos, yPos, 0);
+    }
+
+    public int ReduceHealth()
+    {
+        _remainingHealth--;
+        return _remainingHealth;        
     }
 }
 

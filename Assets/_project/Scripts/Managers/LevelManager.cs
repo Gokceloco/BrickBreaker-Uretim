@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class LevelManager : MonoBehaviour
 {
+    public GameDirector gameDirector;
     public FXManager fXManager;
 
     public CameraShaker cameraShaker;
@@ -10,38 +12,37 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private Brick brickPrefab;
     [SerializeField] private GameObject brickSlotPrefab;
 
-    /*[SerializeField] private int xSize;  
-    [SerializeField] private int ySize;  
-    [SerializeField] private int xOffset;*/
-
     private List<Brick> _bricksList = new List<Brick>();
 
     public List<Transform> brickSlotsList = new List<Transform>();
 
+    public int levelNo;
+    public int startBrickCount;
+
+    private void Update()
+    {
+        if (Keyboard.current.lKey.wasPressedThisFrame)
+        {
+            var tempList = new List<Brick>(_bricksList);
+            foreach (var b in tempList)
+            {
+                b.GetHit(10);
+            }
+        }
+    }
+
     public void RestartLevelManager()
     {
+        levelNo = Mathf.Max(1, PlayerPrefs.GetInt("LastLevelReached"));
         DeleteBricks();
         CreateBricks();
     }
-
-    /*private void CreateBrickSlots()
-    {
-        for (int i = 0; i < xSize; i++)
-        {
-            for (int j = 0; j < ySize; j++)
-            {
-                var newSlot = Instantiate(brickSlotPrefab);
-                newSlot.transform.position = new Vector3(i- xOffset, j, 0);
-                brickSlotsList.Add(newSlot.transform);
-            }
-        }
-    }*/
 
     private void CreateBricks()
     {
         var tempList = new List<Transform>(brickSlotsList);
 
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < startBrickCount; i++)
         {
             var newBrick = Instantiate(brickPrefab, transform);
             newBrick.transform.position = GetBrickPosition(tempList);
@@ -69,5 +70,9 @@ public class LevelManager : MonoBehaviour
     public void BrickDestroyed(Brick brick)
     {
         _bricksList.Remove(brick);
+        if (_bricksList.Count <= 0)
+        {
+            gameDirector.LevelCompleted();
+        }
     }
 }

@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
@@ -36,6 +37,7 @@ public class Ball : MonoBehaviour
 
         if (collision.gameObject.CompareTag("BottomWall"))
         {
+            GetComponentInParent<BallManager>().BallDestroyed();
             Destroy(gameObject);
             color = Color.red;
         }
@@ -86,6 +88,12 @@ public class Ball : MonoBehaviour
             .PlayImpactPS(collision.contacts[0].point, collision.contacts[0].normal, color);
 
         GetComponentInParent<BallManager>().fXManager.audioManager.PlayImpactAS(pitch);
+    }
+
+    public void StopBall()
+    {
+        _direction = Vector3.zero;
+        transform.DOScale(0,.3f).SetDelay(.4f);
     }
 }
 
